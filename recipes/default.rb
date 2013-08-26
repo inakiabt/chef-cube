@@ -17,9 +17,9 @@
 # limitations under the License.
 #
 
-include_recipe "ufw::databag"
+# include_recipe "ufw::databag"
 
-include_recipe "mongodb::10gen_repo"
+# include_recipe "mongodb::10gen_repo"
 include_recipe "mongodb"
 
 user "node"
@@ -33,11 +33,6 @@ include_recipe "nodejs::npm"
 execute "install cube" do
   command "npm install cube"
   creates "/node_modules/cube"
-end
-
-execute "initialize cube database" do
-  command "mongo cube_development /node_modules/cube/schema/schema-create.js"
-  creates "/var/lib/mongodb/cube_development.ns"
 end
 
 template "/usr/src/schema-update.js" do
